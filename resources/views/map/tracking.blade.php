@@ -114,14 +114,14 @@
                     markerWay.push([data.lat, data.lng]);
                 },
             });
-            var markerPolyline = L.polyline(markerWay, {
+            L.polyline(markerWay, {
                 color: 'red'
-            });
+            }).addTo(map);
 
             // refresh the map view
-            markerPolyline.addTo(map);
             leafletView.ProcessView();
-            map.fitBounds(markerPolyline.getBounds());
+//            markerPolyline.addTo(map);
+//            map.fitBounds(markerPolyline.getBounds());
 
         }, 3000);
 

@@ -39,12 +39,12 @@ class MapController extends Controller
                     $obj->lng = $lng + (rand(0, 1) - rand(0, 1) + rand(0, 1)) * 0.001;
                     break;
                 case $imeis[1]:
-                    $obj->lat = $lat + 0.0001;
-                    $obj->lng = $lng + 0.0001;
+                    $obj->lat = $lat + (rand(0, 1) + rand(0, 1) - rand(0, 1)) * 0.01;
+                    $obj->lng = $lng + (rand(0, 1) + rand(0, 1) - rand(0, 1)) * 0.01;
                     break;
                 case $imeis[2]:
-                    $obj->lat = $lat - 0.001;
-                    $obj->lng = $lng - 0.001;
+                    $obj->lat = $lat + (rand(0, 1) - rand(0, 1) - rand(0, 1)) * 0.01;
+                    $obj->lng = $lng + (rand(0, 1) - rand(0, 1) - rand(0, 1)) * 0.01;
                     break;
             }
 

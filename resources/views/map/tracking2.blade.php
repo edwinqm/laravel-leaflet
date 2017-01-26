@@ -40,7 +40,7 @@
             attributionControl: false,
             zoomControl: false
         });
-        map.setView(new L.LatLng(lat, lng), 13);
+        map.setView(new L.LatLng(lat, lng), 14);
 
         // create a tile layer to add to our map
         var tileLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -57,6 +57,8 @@
         // array of markers
         var markers = [];
 
+        var markersWay = [];
+
         // objects
         var objects = <?= json_encode($objects); ?>;
 
@@ -70,7 +72,13 @@
             );
             markers.push(marker);
             leafletView.RegisterMarker(marker);
+
+            markersWay.push({ imei: objects[i].imei });
+
         }
+
+        console.log(markersWay);
+
 
         // working with markers events
         leafletView.PrepareLeafletMarker = function (marker, data) {
@@ -85,35 +93,35 @@
         // windows event for autoload with ajax call
         window.setInterval(function () {
             //
-            for (var i = 0, l = markers.length; i < l; ++i) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: "/maps/ajax",
-                    method: "post",
-                    dataType: 'json',
-                    data: {imei: markers[i].data.id, lat: markers[i].position.lat},
-                    async: false,
-                    cache: false,
-                    success: function (data) {
-                        console.log(data.imei + '||' + data.lat + '|' + data.lng);
-                        console.log(i);
-                        markers[i].position.lat = data.lat;
-                        markers[i].position.lng = data.lng;
-                    },
-                }).done(function (data) {
-                    console.log("second success");
-                }).fail(function (error) {
-                    console.log("error" + error);
-                }).always(function () {
-                    console.log("finished");
-                });
-
-            }
-
-            // refresh the map view
-            leafletView.ProcessView();
+//            for (var i = 0, l = markers.length; i < l; ++i) {
+//                $.ajax({
+//                    headers: {
+//                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//                    },
+//                    url: "/maps/ajax",
+//                    method: "post",
+//                    dataType: 'json',
+//                    data: {imei: markers[i].data.id, lat: markers[i].position.lat, lng: marker.position.lng},
+//                    async: false,
+//                    cache: false,
+//                    success: function (data) {
+//                        console.log(data.imei + '||' + data.lat + '|' + data.lng);
+//                        console.log(i);
+//                        markers[i].position.lat = data.lat;
+//                        markers[i].position.lng = data.lng;
+//                    },
+//                }).done(function (data) {
+//                    console.log("second success");
+//                }).fail(function (error) {
+//                    console.log("error" + error);
+//                }).always(function () {
+//                    console.log("finished");
+//                });
+//
+//            }
+//
+//            // refresh the map view
+//            leafletView.ProcessView();
 
         }, 3000);
 
