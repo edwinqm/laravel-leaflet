@@ -73,6 +73,10 @@ Route::group(['prefix' => 'maps'], function () {
         'uses' => 'MapController@tracking2',
         'as' => 'maps.tracking2',
     ]);
+    Route::get('tracking3', [
+        'uses' => 'MapController@tracking3',
+        'as' => 'maps.tracking3',
+    ]);
 
 });
 Route::post('/maps/ajax', 'MapController@ajax');

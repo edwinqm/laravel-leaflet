@@ -32,13 +32,6 @@
 @section('page-script')
     <script>
 
-        var clat = -17.78424, clng = -63.18087;
-        var wlat = -17.770856, wlng = -63.192141;
-        var hlat = -17.810681, hlng = -63.122576;
-
-        var cotoca = [-17.75326, -62.99698];
-        var viruviru = [-17.64991, -63.13843];
-
         // center of santa cruz
         var lat = -17.78424, lng = -63.18087;
 
@@ -47,86 +40,112 @@
             attributionControl: false,
             zoomControl: false
         });
-        map.setView(new L.LatLng(lat, lng), 13);
+        map.setView(new L.LatLng(lat, lng), 14);
 
         // create a tile layer to add to our map
-        var tileLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        var tileLayer = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             detectRetina: true,
-            maxNativeZoom: 18
+//            maxNativeZoom: 18,
+            maxZoom: 19,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
         // set and display tile on map
         tileLayer.addTo(map);
 
-        // get initial data
-        var imei = <?= json_encode($object->imei); ?>;
-        var latitude = <?= json_encode($object->lat); ?>;
-        var longitude = <?= json_encode($object->lng); ?>;
+        // create a PruneCluster For Leaflet that will contain out markers
+        //        var leafletView = new PruneClusterForLeaflet();
+        var leafletViews = [];
+
+        // array of markers
+        var markers = [];
+        var markersWay = [];
 
         // objects
-        var marker = new PruneCluster.Marker(
-                latitude,
-                longitude,
-                {
-                    id: imei
-                }
-        );
+        var objects = {!! json_encode($objects) !!};
 
-        // create a polyline for out marker
-        var markerWay = [
-            [latitude, longitude]
-        ];
+        for (var i = 0; i < objects.length; ++i) {
 
+            var marker = new PruneCluster.Marker(
+                    objects[i].lat,
+                    objects[i].lng,
+                    {
+                        imei: objects[i].imei
+                    }
+            );
+            markers.push(marker);
 
-        // create a PruneCluster For Leaflet that will contain out markers
-        var leafletView = new PruneClusterForLeaflet();
+            markersWay.push({
+                imei: objects[i].imei,
+                latlng: [
+                    [objects[i].lat, objects[i].lng]
+                ]
+            });
 
-        leafletView.RegisterMarker(marker);
+            var leafletView = new PruneClusterForLeaflet();
+            leafletView.RegisterMarker(marker);
 
-        // working with markers events
-        leafletView.PrepareLeafletMarker = function (marker, data) {
-            // for popups
-            if (marker.getPopup()) {
-                marker.setPopupContent('<b>ID: ' + data.id + '</b><br>' + marker.getLatLng().toString());
-            } else {
-                marker.bindPopup('<b>ID: ' + data.id + '</b><br>' + marker.getLatLng().toString());
-            }
+            leafletViews.push(leafletView);
+
         }
 
         // windows event for autoload with ajax call
         window.setInterval(function () {
-            //
 
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "/maps/ajax",
-                method: "post",
-                dataType: 'json',
-                sync: false,
-                cache: false,
-                data: {imei: marker.data.id, lat: marker.position.lat, lng: marker.position.lng},
-                success: function (data) {
-                    console.log(data.imei + '||' + data.lat + '|' + data.lng);
-                    marker.position.lat = data.lat;
-                    marker.position.lng = data.lng;
-                    markerWay.push([data.lat, data.lng]);
-                },
-            });
-            L.polyline(markerWay, {
-                color: 'lime'
-            }).addTo(map);
+            for (var i = 0, l = markers.length; i < l; ++i) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "/maps/ajax",
+                    method: "post",
+                    dataType: 'json',
+                    data: {imei: markers[i].data.imei, lat: markers[i].position.lat, lng: marker.position.lng},
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                        console.log(data.imei + '||' + data.lat + '|' + data.lng);
+                        console.log(i);
+                        markers[i].position.lat = data.lat;
+                        markers[i].position.lng = data.lng;
+
+                        markersWay[i].latlng.push([data.lat, data.lng]);
+                        leafletViews[i].ProcessView();
+
+                        L.polyline(markersWay[i].latlng, {
+                            color: 'red'
+                        }).addTo(map);
+
+                    },
+                });
+
+            }
 
             // refresh the map view
-            leafletView.ProcessView();
-//            markerPolyline.addTo(map);
-//            map.fitBounds(markerPolyline.getBounds());
 
-        }, 3000);
 
-        // finally add out new layer on map
-        map.addLayer(leafletView);
+        }, 5000);
+
+        // array of overlays
+        var overlays = {};
+
+        for (var i = 0; i < leafletViews.length; ++i) {
+
+            overlays[markers[i].data.imei] = leafletViews[i];
+
+            leafletViews[i].PrepareLeafletMarker = function (marker, data) {
+                if (marker.getPopup()) {
+                    marker.setPopupContent('<b>Title: ' + data.imei + '</b><br>' + marker.getLatLng().toString())
+                }
+                else {
+                    marker.bindPopup('<b>Title: ' + data.imei + '</b><br>' + marker.getLatLng().toString())
+                }
+            }
+
+            map.addLayer(leafletViews[i]);
+        }
+
+        L.control.layers(null, overlays).addTo(map);
 
     </script>
 @stop

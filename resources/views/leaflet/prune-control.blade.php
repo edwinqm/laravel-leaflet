@@ -84,6 +84,8 @@
             "Group B": leafletView2
         };
 
+        console.log(overlays);
+
         leafletView1.PrepareLeafletMarker = function (marker, data) {
             if(marker.getPopup()){
                 marker.setPopupContent('<b>Title: '+data.title+'</b><br>Group: A<br>'+marker.getLatLng().toString())

@@ -28,6 +28,8 @@
 
                         {{ link_to_route('maps.tracking2', 'TRACKING 2', [], ['class' => 'btn btn-primary', ]) }}
 
+                        {{ link_to_route('maps.tracking3', 'TRACKING 3', [], ['class' => 'btn btn-primary', ]) }}
+
                     </div>
                 </div>
 
