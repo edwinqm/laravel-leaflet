@@ -43,9 +43,11 @@
         map.setView(new L.LatLng(lat, lng), 14);
 
         // create a tile layer to add to our map
-        var tileLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        var tileLayer = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
             detectRetina: true,
-            maxNativeZoom: 18
+//            maxNativeZoom: 18,
+            maxZoom: 19,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
         });
 
         // set and display tile on map
@@ -60,9 +62,10 @@
         var markersWay = [];
 
         // objects
-        var objects = <?= json_encode($objects); ?>;
+        var objects = {!! json_encode($objects) !!};
 
         for (var i = 0; i < objects.length; ++i) {
+
             var marker = new PruneCluster.Marker(
                     objects[i].lat,
                     objects[i].lng,
@@ -73,12 +76,16 @@
             markers.push(marker);
             leafletView.RegisterMarker(marker);
 
-            markersWay.push({ imei: objects[i].imei });
+            markersWay.push({
+                imei: objects[i].imei,
+                latlng: [
+                    [objects[i].lat, objects[i].lng]
+                ]
+            });
 
         }
 
-        console.log(markersWay);
-
+        //        console.log(markersWay);
 
         // working with markers events
         leafletView.PrepareLeafletMarker = function (marker, data) {
@@ -92,38 +99,39 @@
 
         // windows event for autoload with ajax call
         window.setInterval(function () {
-            //
-//            for (var i = 0, l = markers.length; i < l; ++i) {
-//                $.ajax({
-//                    headers: {
-//                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//                    },
-//                    url: "/maps/ajax",
-//                    method: "post",
-//                    dataType: 'json',
-//                    data: {imei: markers[i].data.id, lat: markers[i].position.lat, lng: marker.position.lng},
-//                    async: false,
-//                    cache: false,
-//                    success: function (data) {
-//                        console.log(data.imei + '||' + data.lat + '|' + data.lng);
-//                        console.log(i);
-//                        markers[i].position.lat = data.lat;
-//                        markers[i].position.lng = data.lng;
-//                    },
-//                }).done(function (data) {
-//                    console.log("second success");
-//                }).fail(function (error) {
-//                    console.log("error" + error);
-//                }).always(function () {
-//                    console.log("finished");
-//                });
-//
-//            }
-//
-//            // refresh the map view
-//            leafletView.ProcessView();
 
-        }, 3000);
+            for (var i = 0, l = markers.length; i < l; ++i) {
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "/maps/ajax",
+                    method: "post",
+                    dataType: 'json',
+                    data: {imei: markers[i].data.id, lat: markers[i].position.lat, lng: marker.position.lng},
+                    async: false,
+                    cache: false,
+                    success: function (data) {
+                        console.log(data.imei + '||' + data.lat + '|' + data.lng);
+                        console.log(i);
+                        markers[i].position.lat = data.lat;
+                        markers[i].position.lng = data.lng;
+
+                        markersWay[i].latlng.push([data.lat, data.lng]);
+
+                        L.polyline(markersWay[i].latlng, {
+                            color: 'red'
+                        }).addTo(map);
+
+                    },
+                });
+
+            }
+
+            // refresh the map view
+            leafletView.ProcessView();
+
+        }, 5000);
 
         // finally add out new layer on map
         map.addLayer(leafletView);

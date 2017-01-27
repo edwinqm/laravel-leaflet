@@ -75,4 +75,4 @@ Route::group(['prefix' => 'maps'], function () {
     ]);
 
 });
-    Route::post('/maps/ajax', 'MapController@ajax');
+Route::post('/maps/ajax', 'MapController@ajax');

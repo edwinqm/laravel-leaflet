@@ -115,7 +115,7 @@
                 },
             });
             L.polyline(markerWay, {
-                color: 'red'
+                color: 'lime'
             }).addTo(map);
 
             // refresh the map view
