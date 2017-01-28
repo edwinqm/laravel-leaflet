@@ -34,20 +34,20 @@ class MapController extends Controller
             $lat = $request->get('lat');
             $lng = $request->get('lng');
 
-            switch ($imei) {
-                case $imeis[0]:
-                    $obj->lat = $lat + (rand(0, 1) - rand(0, 1) + rand(0, 1)) * 0.001;
-                    $obj->lng = $lng + (rand(0, 1) - rand(0, 1) + rand(0, 1)) * 0.001;
-                    break;
-                case $imeis[1]:
-                    $obj->lat = $lat + (rand(0, 1) + rand(0, 1) - rand(0, 1)) * 0.01;
-                    $obj->lng = $lng + (rand(0, 1) + rand(0, 1) - rand(0, 1)) * 0.01;
-                    break;
-                case $imeis[2]:
-                    $obj->lat = $lat + (rand(0, 1) - rand(0, 1) - rand(0, 1)) * 0.01;
-                    $obj->lng = $lng + (rand(0, 1) - rand(0, 1) - rand(0, 1)) * 0.01;
-                    break;
-            }
+//            switch ($imei) {
+//                case $imeis[0]:
+//                    $obj->lat = $lat + (rand(0, 1) - rand(0, 1) + rand(0, 1)) * 0.001;
+//                    $obj->lng = $lng + (rand(0, 1) - rand(0, 1) + rand(0, 1)) * 0.001;
+//                    break;
+//                case $imeis[1]:
+//                    $obj->lat = $lat + (rand(0, 1) + rand(0, 1) - rand(0, 1)) * 0.01;
+//                    $obj->lng = $lng + (rand(0, 1) + rand(0, 1) - rand(0, 1)) * 0.01;
+//                    break;
+//                case $imeis[2]:
+//                    $obj->lat = $lat + (rand(0, 1) - rand(0, 1) - rand(0, 1)) * 0.01;
+//                    $obj->lng = $lng + (rand(0, 1) - rand(0, 1) - rand(0, 1)) * 0.01;
+//                    break;
+//            }
 //            switch ($imei) {
 //                case $imeis[0]:
 //                    $lat += (rand(0, 1) - rand(0, 1) + rand(0, 1)) * 0.001;

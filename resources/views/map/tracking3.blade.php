@@ -110,7 +110,6 @@
                         markers[i].position.lng = data.lng;
 
                         markersWay[i].latlng.push([data.lat, data.lng]);
-                        leafletViews[i].ProcessView();
 
                         L.polyline(markersWay[i].latlng, {
                             color: 'red'
