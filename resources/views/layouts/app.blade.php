@@ -51,6 +51,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     <li><a href="{{ url('/maps/leaflet') }}">Maps</a></li>
+                    <li><a href="{{ url('/datatable') }}">DataTables</a></li>
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>

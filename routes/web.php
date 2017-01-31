@@ -35,8 +35,8 @@ Route::get('blade', function () {
 Route::group(['prefix' => 'maps'], function () {
 
     Route::group(['prefix' => 'leaflet'], function () {
-        Route::get('/',[
-            'uses' => 'LeafletController@index', 
+        Route::get('/', [
+            'uses' => 'LeafletController@index',
             'as' => 'maps.leaflet.index',
         ]);
         Route::get('basic', [
@@ -80,3 +80,31 @@ Route::group(['prefix' => 'maps'], function () {
 
 });
 Route::post('/maps/ajax', 'MapController@ajax');
+
+Route::get('/gsusers', 'GSUserController@index');
+
+Route::get('/gsusers/adv', 'GSUserController@adv');
+
+/**
+ * DATATABLES
+ */
+
+
+Route::group(['prefix' => 'datatable'], function () {
+    Route::get('/', function () {
+        return view('datatables.index');
+    });
+
+});
+Route::group(['prefix' => 'nayjest'], function () {
+
+    Route::get('/index', function(){
+        return view('nayjest.index');
+    });
+    
+    Route::get('example1', ['as' => 'nayjest.example1', 'uses' => 'NayjestController@example1']);
+    Route::get('example2', ['as' => 'nayjest.example2', 'uses' => 'NayjestController@example2']);
+    Route::get('example3', ['as' => 'nayjest.example3', 'uses' => 'NayjestController@example3']);
+    Route::get('example4', ['as' => 'nayjest.example4', 'uses' => 'NayjestController@example4']);
+    
+});

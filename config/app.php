@@ -169,6 +169,8 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        Nayjest\Grids\ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         //
 
@@ -230,8 +232,13 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Form' => Collective\Html\FormFacade::class,
+        'Grids' => Nayjest\Grids\Grids::class,
+        'HTML' => Collective\Html\HtmlFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+
+        'Input' => Illuminate\Support\Facades\Input::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

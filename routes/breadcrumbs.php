@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * MAPS
+ */
 // Home
 Breadcrumbs::register('home', function ($breadcrumbs) {
     $breadcrumbs->push('Home', route('home'));
@@ -29,4 +31,31 @@ Breadcrumbs::register('prune-cluster', function($breadcrumbs){
 Breadcrumbs::register('prune-control', function($breadcrumbs){
     $breadcrumbs->parent('leaflet');
     $breadcrumbs->push('PruneControl', route('maps.leaflet.prune-control'));
+});
+
+/**
+ * MAYJEST
+ */
+// Nayjest Index
+Breadcrumbs::register('nayjest', function($breadcrumbs){
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Nayjest', url('nayjest/index'));
+});
+// Nayjest Examaple 1
+Breadcrumbs::register('example1', function($breadcrumbs){
+    $breadcrumbs->parent('nayjest');
+    $breadcrumbs->push('Example 1', route('nayjest.example1'));
+});
+// Example 2
+Breadcrumbs::register('example2', function($breadcrumbs){
+    $breadcrumbs->parent('nayjest');
+    $breadcrumbs->push('Example 2', route('nayjest.example2'));
+});
+Breadcrumbs::register('example3', function($breadcrumbs){
+    $breadcrumbs->parent('nayjest');
+    $breadcrumbs->push('Example 3', route('nayjest.example3'));
+});
+Breadcrumbs::register('example4', function($breadcrumbs){
+    $breadcrumbs->parent('nayjest');
+    $breadcrumbs->push('Example 4', route('nayjest.example4'));
 });
