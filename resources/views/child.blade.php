@@ -2,7 +2,7 @@
 
 @section('title', 'Page Title')
 
-@include('partials.header', ['some' => 'Hi everybody!!!', ])
+@include('_partials.header', ['some' => 'Hi everybody!!!', ])
 
 @section('sidebar')
     @parent

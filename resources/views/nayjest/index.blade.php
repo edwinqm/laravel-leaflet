@@ -2,7 +2,7 @@
 
 @section('title', 'index')
 
-@include('partials.head')
+@include('_partials.head')
 
 @section('content')
 

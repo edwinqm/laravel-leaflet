@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@include('partials.head')
+@include('_partials.head')
 
 {!! Html::style('leaflet/css/leaflet-1.0.3.css') !!}
 {{--{!! Html::style('leaflet/css/LeafletStyleSheet.css') !!}--}}
