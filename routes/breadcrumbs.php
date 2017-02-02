@@ -59,3 +59,39 @@ Breadcrumbs::register('example4', function($breadcrumbs){
     $breadcrumbs->parent('nayjest');
     $breadcrumbs->push('Example 4', route('nayjest.example4'));
 });
+
+/**
+ * YAJRA
+ */
+Breadcrumbs::register('yajra', function($breadcrumbs){
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Yajra', url('datatable/index'));
+});
+Breadcrumbs::register('yajra1', function($breadcrumbs){
+    $breadcrumbs->parent('yajra');
+    $breadcrumbs->push('Row Details', route('datatable.row-details'));
+});
+Breadcrumbs::register('yajra2', function($breadcrumbs){
+    $breadcrumbs->parent('yajra');
+    $breadcrumbs->push('Example 2', route('datatable.example2'));
+});
+Breadcrumbs::register('yajra4', function($breadcrumbs){
+    $breadcrumbs->parent('yajra');
+    $breadcrumbs->push('Filter Column', url('post-column-search'));
+});
+Breadcrumbs::register('yajra5', function($breadcrumbs){
+    $breadcrumbs->parent('yajra');
+    $breadcrumbs->push('Master Details', url('master-details'));
+});
+Breadcrumbs::register('yajra6', function($breadcrumbs){
+    $breadcrumbs->parent('yajra');
+    $breadcrumbs->push('Count Alias', url('count'));
+});
+Breadcrumbs::register('yajra3', function($breadcrumbs){
+    $breadcrumbs->parent('yajra');
+    $breadcrumbs->push('DataTables as a Service', url('users'));
+});
+Breadcrumbs::register('yajra7', function($breadcrumbs){
+    $breadcrumbs->parent('yajra');
+    $breadcrumbs->push('Service TwoDatatables', url('services/two-datatables'));
+});

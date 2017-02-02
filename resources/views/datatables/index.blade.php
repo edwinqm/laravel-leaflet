@@ -15,6 +15,7 @@
 
                         {{ link_to('nayjest/index', 'Nayjest/Grids', ['class' => 'btn btn-primary'], null) }}
 
+                        {{ link_to('datatable/index', 'Yajra', ['class' => 'btn btn-success'], null) }}
 
                     </div>
                 </div>

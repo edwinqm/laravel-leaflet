@@ -171,6 +171,8 @@ return [
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
         Nayjest\Grids\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
 
         //
 
@@ -239,6 +241,10 @@ return [
 
         'Input' => Illuminate\Support\Facades\Input::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
 
     ],
 

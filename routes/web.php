@@ -86,11 +86,11 @@ Route::get('/gsusers', 'GSUserController@index');
 Route::get('/gsusers/adv', 'GSUserController@adv');
 
 /**
- * DATATABLES
+ * DATATABLES NAYJEST
  */
 
 
-Route::group(['prefix' => 'datatable'], function () {
+Route::group(['prefix' => 'datatables'], function () {
     Route::get('/', function () {
         return view('datatables.index');
     });
@@ -98,13 +98,49 @@ Route::group(['prefix' => 'datatable'], function () {
 });
 Route::group(['prefix' => 'nayjest'], function () {
 
-    Route::get('/index', function(){
+    Route::get('/index', function () {
         return view('nayjest.index');
     });
-    
+
     Route::get('example1', ['as' => 'nayjest.example1', 'uses' => 'NayjestController@example1']);
     Route::get('example2', ['as' => 'nayjest.example2', 'uses' => 'NayjestController@example2']);
     Route::get('example3', ['as' => 'nayjest.example3', 'uses' => 'NayjestController@example3']);
     Route::get('example4', ['as' => 'nayjest.example4', 'uses' => 'NayjestController@example4']);
-    
+
 });
+
+/**
+ * DATATABLES NAYJEST
+ */
+
+Route::group(['prefix' => 'datatable'], function () {
+    Route::get('/index', function () {
+        return view('datatable.index');
+    });
+
+    Route::get('example1', ['as' => 'datatable.example1', 'uses' => 'DatatablesController@example1']);
+    Route::get('example2', ['as' => 'datatable.example2', 'uses' => 'DatatablesController@example2']);
+
+    Route::get('/row-details', ['as' => 'datatable.row-details', 'uses' => 'EloquentController@getRowDetails']);
+    // for ajax
+    Route::post('/row-details-data', 'EloquentController@postRowDetailsData');
+    // filter
+    Route::get('/post-column-search', 'EloquentController@getPostColumnSearch');
+    Route::post('/column-search-data', 'EloquentController@anyColumnSearchData');
+    // master details
+    Route::get('/master-details', 'EloquentController@getMaster');
+    Route::get('/master-data', 'EloquentController@getMasterData');
+    Route::post('/details-data', 'EloquentController@getDetailsData');
+    // count alias
+    Route::get('/count', 'EloquentController@getCount');
+    Route::get('/count-data', 'EloquentController@getCountData');
+});
+
+// sevices datatables
+Route::resource('users', 'UsersController');
+
+// service two-datatables
+Route::get('services/two-datatables', 'ServiceController@getUsersDataTables');
+Route::get('services/two-datatables/posts','ServiceController@getPostsDataTables');
+
+
