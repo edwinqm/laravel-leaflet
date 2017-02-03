@@ -143,4 +143,9 @@ Route::resource('users', 'UsersController');
 Route::get('services/two-datatables', 'ServiceController@getUsersDataTables');
 Route::get('services/two-datatables/posts','ServiceController@getPostsDataTables');
 
+///////////////////////
+// RESPONSIVE TEST
+///////////////////////
+
+Route::get('datatable/responsive', 'DatatablesController@responsive');
 

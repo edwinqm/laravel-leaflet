@@ -18,6 +18,7 @@
                         || {{ link_to('datatable/master-details', 'Master Details', []) }}
                         || {{ link_to('datatable/count', 'Count Alias', []) }}
                         || {{ link_to('services/two-datatables', 'Service TwoDatatables', []) }}
+                        || {{ link_to('datatable/responsive', 'Responsive', []) }}
 
                     </div>
                 </div>

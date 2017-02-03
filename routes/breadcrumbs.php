@@ -95,3 +95,7 @@ Breadcrumbs::register('yajra7', function($breadcrumbs){
     $breadcrumbs->parent('yajra');
     $breadcrumbs->push('Service TwoDatatables', url('services/two-datatables'));
 });
+Breadcrumbs::register('yajra8', function($breadcrumbs){
+    $breadcrumbs->parent('yajra');
+    $breadcrumbs->push('Responsive', url('datatable/responsive'));
+});
