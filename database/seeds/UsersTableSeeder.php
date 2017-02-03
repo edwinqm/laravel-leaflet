@@ -19,33 +19,33 @@ class UsersTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         $admin = new User();
-        $admin->name = 'admin';
+        $admin->name = 'Administrator';
+        $admin->username = 'admin';
         $admin->email = 'admin@domain.com';
-        $admin->birthday = $faker->date();
         $admin->password = bcrypt('123456');
         $admin->save();
 
         $admin->profile()->create([
-            'name' => 'Administrator',
             'avatar' => '',
+            'birthday' => $faker->date(),
         ]);
-        
+
         for ($i = 1; $i <= 37; $i++) {
 
             $user = new User();
             $user->name = $faker->name;
+            $user->username = $faker->userName;
             $user->email = $faker->email;
-            $user->birthday = $faker->date();
             $user->password = bcrypt('123456');
             $user->save();
 
             $user->profile()->create([
-                'name' => 'User '.$i,
                 'avatar' => '',
+                'birthday' => $faker->date(),
             ]);
-            
+
         }
 
     }
-    
+
 }

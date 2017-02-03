@@ -136,6 +136,7 @@ Route::group(['prefix' => 'datatable'], function () {
     Route::get('/count-data', 'EloquentController@getCountData');
 });
 
+
 // sevices datatables
 Route::resource('users', 'UsersController');
 
@@ -149,3 +150,7 @@ Route::get('services/two-datatables/posts','ServiceController@getPostsDataTables
 
 Route::get('datatable/responsive', 'DatatablesController@responsive');
 
+/**
+ * Users CRUD
+ */
+Route::resource('users', 'UserController');
