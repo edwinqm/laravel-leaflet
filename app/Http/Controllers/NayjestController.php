@@ -133,11 +133,6 @@ class NayjestController extends Controller
                         ->setOperator(FilterConfig::OPERATOR_LIKE)
                 ),
             (new FieldConfig())
-                ->setName('birthday')
-                ->setLabel('Birthday')
-                ->setSortable(true),
-
-            (new FieldConfig())
                 ->setName('posts')
                 ->setLabel('Posts')
                 ->setCallback(function ($val) {
@@ -151,27 +146,6 @@ class NayjestController extends Controller
             (new THead())
                 ->setComponents([
                     (new ColumnHeadersRow()),
-                    (new FiltersRow())
-                        ->addComponents([
-                            (new RenderFunc(function () {
-                                return HTML::style('js/daterangepicker/daterangepicker-bs3.css')
-                                . HTML::script('js/moment/moment-with-locales.js')
-                                . HTML::script('js/daterangepicker/daterangepicker.js')
-                                . "<style>
-                                                .daterangepicker td.available.active,
-                                                .daterangepicker li.active,
-                                                .daterangepicker li:hover {
-                                                    color:black !important;
-                                                    font-weight: bold;
-                                                }
-                                           </style>";
-                            }))
-                                ->setRenderSection('filters_row_column_birthday'),
-                            (new DateRangePicker)
-                                ->setName('birthday')
-                                ->setRenderSection('filters_row_column_birthday')
-                                ->setDefaultValue(['1990-01-01', date('Y-m-d')])
-                        ]),
                     (new OneCellRow())
                         ->setRenderSection(RenderableRegistry::SECTION_END)
                         ->setComponents([

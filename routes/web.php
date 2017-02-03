@@ -108,3 +108,8 @@ Route::group(['prefix' => 'nayjest'], function () {
     Route::get('example4', ['as' => 'nayjest.example4', 'uses' => 'NayjestController@example4']);
     
 });
+
+/**
+ * Users CRUD
+ */
+Route::resource('users', 'UserController');
