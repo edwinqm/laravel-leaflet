@@ -153,4 +153,4 @@ Route::get('datatable/responsive', 'DatatablesController@responsive');
 /**
  * Users CRUD
  */
-Route::resource('users', 'UserController');
+Route::resource('user', 'UserController');

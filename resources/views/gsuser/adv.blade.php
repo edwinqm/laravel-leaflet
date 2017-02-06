@@ -83,7 +83,7 @@ use \Nayjest\Grids\SelectFilterConfig;
                                                             if ($val) {
                                                                 $icon = "<span class='glyphicon glyphicon-user'></span>&nbsp;";
                                                                 $user = $row->getSrc();
-                                                                return $icon . HTML::linkRoute('users.profile', $val, [$user->id]);
+                                                                return $icon . HTML::linkRoute('user.profile', $val, [$user->id]);
                                                             }
                                                         })
                                                         # sorting buttons will be added to header, DB query will be modified

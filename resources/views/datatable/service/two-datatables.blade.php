@@ -77,7 +77,7 @@
                     {data: 'id', name: 'posts.id'},
                     {data: 'title', name: 'posts.title'},
                     {data: 'description', name: 'posts.description'},
-                    {data: 'created_by', name: 'users.name', width: '110px'},
+                    {data: 'created_by', name: 'user.name', width: '110px'},
                     {data: 'created_at', name: 'posts.created_at', width: '120px'},
                     {data: 'updated_at', name: 'posts.updated_at', width: '120px'},
                 ],

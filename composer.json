@@ -13,7 +13,8 @@
         "maatwebsite/excel": "~2.1.0",
         "yajra/laravel-datatables-oracle": "^6.0",
         "barryvdh/laravel-snappy": "^0.3.2",
-        "dompdf/dompdf": "0.6.2"
+        "dompdf/dompdf": "0.6.2",
+        "proengsoft/laravel-jsvalidation": "~1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -48,7 +49,8 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+            "php artisan optimize",
+            "php artisan vendor:publish --provider=\"Proengsoft\\JsValidation\\JsValidationServiceProvider\" --tag=public --force"
         ]
     },
     "config": {

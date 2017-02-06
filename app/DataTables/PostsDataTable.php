@@ -34,9 +34,9 @@ class PostsDataTable extends DataTable
             'posts.description as description',
             'posts.created_at as created_at',
             'posts.updated_at as updated_at',
-            'users.name as created_by'
+            'user.name as created_by'
         ])
-        ->leftJoin('users', 'posts.user_id', '=', 'users.id');
+        ->leftJoin('user', 'posts.user_id', '=', 'user.id');
 
         return $this->applyScopes($query);
     }

@@ -72,7 +72,7 @@
             }
         });
 
-        var table = $('#users-table').DataTable({
+        var table = $('#user-table').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
@@ -107,7 +107,7 @@
         });
 
         // Add event listener for opening and closing details
-        $('#users-table tbody').on('click', 'td.details-control', function () {
+        $('#user-table tbody').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
             var row = table.row(tr);
 

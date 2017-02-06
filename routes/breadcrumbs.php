@@ -89,7 +89,7 @@ Breadcrumbs::register('yajra6', function($breadcrumbs){
 });
 Breadcrumbs::register('yajra3', function($breadcrumbs){
     $breadcrumbs->parent('yajra');
-    $breadcrumbs->push('DataTables as a Service', url('users'));
+    $breadcrumbs->push('DataTables as a Service', url('user'));
 });
 Breadcrumbs::register('yajra7', function($breadcrumbs){
     $breadcrumbs->parent('yajra');

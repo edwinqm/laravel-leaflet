@@ -71,7 +71,7 @@
             }
         });
 
-        var table = $('#users-table').DataTable({
+        var table = $('#user-table').DataTable({
             processing: true,
             serverSide: true,
             ajax: '{!! url('datatable/master-data') !!}',
@@ -83,12 +83,12 @@
                     "data": null,
                     "defaultContent": ''
                 },
-                {data: 'id', name: 'users.id'},
-                {data: 'name', name: 'users.name', searchable: false},
-                {data: 'email', name: 'users.email'},
+                {data: 'id', name: 'user.id'},
+                {data: 'name', name: 'user.name', searchable: false},
+                {data: 'email', name: 'user.email'},
                 {data: 'count', name: 'count', searchable: false},
-                {data: 'created_at', name: 'users.created_at'},
-                {data: 'updated_at', name: 'users.updated_at'},
+                {data: 'created_at', name: 'user.created_at'},
+                {data: 'updated_at', name: 'user.updated_at'},
             ],
             order: [[1, 'asc']],
             initComplete: function () {
@@ -104,7 +104,7 @@
         });
 
         // Add event listener for opening and closing details
-        $('#users-table tbody').on('click', 'td.details-control', function () {
+        $('#user-table tbody').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
             var row = table.row(tr);
             var tableId = 'posts-' + row.data().id;

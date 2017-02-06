@@ -20,7 +20,7 @@ class EntrustSetupTables extends Migration
             $table->timestamps();
         });
 
-        // Create table for associating roles to users (Many-to-Many)
+        // Create table for associating roles to user (Many-to-Many)
         Schema::create('role_user', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
             $table->integer('role_id')->unsigned();

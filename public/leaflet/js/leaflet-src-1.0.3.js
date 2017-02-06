@@ -7006,7 +7006,7 @@ L.Popup = L.DivOverlay.extend({
 		autoPanPadding: [5, 5],
 
 		// @option keepInView: Boolean = false
-		// Set it to `true` if you want to prevent users from panning the popup
+		// Set it to `true` if you want to prevent user from panning the popup
 		// off of the screen while it is open.
 		keepInView: false,
 
@@ -12002,7 +12002,7 @@ L.Map.addInitHook('addHandler', 'boxZoom', L.Map.BoxZoom);
 // @section Keyboard Navigation Options
 L.Map.mergeOptions({
 	// @option keyboard: Boolean = true
-	// Makes the map focusable and allows users to navigate the map with keyboard
+	// Makes the map focusable and allows user to navigate the map with keyboard
 	// arrows and `+`/`-` keys.
 	keyboard: true,
 
@@ -12840,7 +12840,7 @@ L.control.scale = function (options) {
  * @aka L.Control.Layers
  * @inherits Control
  *
- * The layers control gives users the ability to switch between different base layers and switch overlays on/off (check out the [detailed example](http://leafletjs.com/examples/layers-control.html)). Extends `Control`.
+ * The layers control gives user the ability to switch between different base layers and switch overlays on/off (check out the [detailed example](http://leafletjs.com/examples/layers-control.html)). Extends `Control`.
  *
  * @example
  *

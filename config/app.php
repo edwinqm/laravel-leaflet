@@ -173,6 +173,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
+        Proengsoft\JsValidation\JsValidationServiceProvider::class,
 
         //
 
@@ -245,6 +246,8 @@ return [
 
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+
+        'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
 
     ],
 

@@ -36,17 +36,17 @@
 @push('scripts')
 <script>
     $(function () {
-        $('#users-table').DataTable({
+        $('#user-table').DataTable({
             processing: true,
             serverSide: true,
             ajax: '{!! url('datatable/count-data') !!}',
             columns: [
-                {data: 'id', name: 'users.id'},
-                {data: 'name', name: 'users.name'},
-                {data: 'email', name: 'users.email'},
+                {data: 'id', name: 'user.id'},
+                {data: 'name', name: 'user.name'},
+                {data: 'email', name: 'user.email'},
                 {data: 'count', name: 'count', searchable: false},
-                {data: 'created_at', name: 'users.created_at'},
-                {data: 'updated_at', name: 'users.updated_at'}
+                {data: 'created_at', name: 'user.created_at'},
+                {data: 'updated_at', name: 'user.updated_at'}
             ]
         });
     });

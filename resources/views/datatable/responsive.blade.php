@@ -61,7 +61,7 @@
 <script>
 
     $(function () {
-        $('#users-table').DataTable({
+        $('#user-table').DataTable({
             responsive: true,
             bJQueryUI: true,
             sPaginationType: "full_numbers",

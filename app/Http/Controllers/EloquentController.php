@@ -31,7 +31,7 @@ class EloquentController extends Controller
     public function anyColumnSearchData(Request $request)
     {
         $users = User::select([
-            DB::raw("CONCAT(users.id,'-',users.id) as user_id"),
+            DB::raw("CONCAT(user.id,'-',user.id) as user_id"),
             'name',
             'email',
             'created_at',
@@ -40,7 +40,7 @@ class EloquentController extends Controller
 
         return Datatables::of($users)
             ->filterColumn('user_id', function ($query, $keyword) {
-                $query->whereRaw("CONCAT(users.id,'-',users.id) like ?", ["%{$keyword}%"]);
+                $query->whereRaw("CONCAT(user.id,'-',user.id) like ?", ["%{$keyword}%"]);
             })
             ->make(true);
     }
@@ -55,14 +55,14 @@ class EloquentController extends Controller
     public function getMasterData(Request $request)
     {
         $users = User::select([
-            'users.id',
-            'users.name',
-            'users.email',
+            'user.id',
+            'user.name',
+            'user.email',
             DB::raw('count(posts.user_id) as count'),
-            'users.created_at',
-            'users.updated_at'
+            'user.created_at',
+            'user.updated_at'
         ])
-            ->join('posts', 'posts.user_id', '=', 'users.id')
+            ->join('posts', 'posts.user_id', '=', 'user.id')
             ->groupBy('posts.user_id');
 
         return Datatables::of($users)
@@ -94,13 +94,13 @@ class EloquentController extends Controller
     public function getCountData()
     {
         $users = User::select([
-            'users.id',
-            'users.name',
-            'users.email',
+            'user.id',
+            'user.name',
+            'user.email',
             \DB::raw('count(posts.user_id) as count'),
-            'users.created_at',
-            'users.updated_at'
-        ])->join('posts', 'posts.user_id', '=', 'users.id')
+            'user.created_at',
+            'user.updated_at'
+        ])->join('posts', 'posts.user_id', '=', 'user.id')
             ->groupBy('posts.user_id');
 
         return Datatables::of($users)->make(true);

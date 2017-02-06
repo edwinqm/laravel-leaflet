@@ -50,7 +50,7 @@
             }
         });
 
-        $('#users-table').DataTable({
+        $('#user-table').DataTable({
             processing: true,
             serverSide: true,
             ajax: {
