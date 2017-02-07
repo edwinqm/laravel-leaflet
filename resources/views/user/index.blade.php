@@ -30,8 +30,8 @@
                             <div class="col-md-12 text-center">
 
                                 @foreach($users as $user)
-                                    <h3>{{ $user->username }}</h3>
-                                    <p>{{ $user->password }}</p>
+
+                                    <h3>{{ $user->id.' | '.$user->username }}</h3>
 
                                     <p>{{ $user->email }}</p>
 

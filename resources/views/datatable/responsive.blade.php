@@ -54,6 +54,7 @@
 <script src="//code.jquery.com/jquery.js"></script>
 <!-- DataTables -->
 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
 <!-- Responsive Datatables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css">
 <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
@@ -61,7 +62,7 @@
 <script>
 
     $(function () {
-        $('#user-table').DataTable({
+        $('#users-table').DataTable({
             responsive: true,
             bJQueryUI: true,
             sPaginationType: "full_numbers",

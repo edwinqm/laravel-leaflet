@@ -26,11 +26,13 @@ class UsersTableSeeder extends Seeder
         $admin->save();
 
         $admin->profile()->create([
+            'address' => $faker->address, 
+            'phone' => $faker->phoneNumber, 
             'avatar' => '',
             'birthday' => $faker->date(),
         ]);
 
-        for ($i = 1; $i <= 37; $i++) {
+        for ($i = 1; $i <= 5; $i++) {
 
             $user = new User();
             $user->name = $faker->name;
@@ -40,6 +42,8 @@ class UsersTableSeeder extends Seeder
             $user->save();
 
             $user->profile()->create([
+                'address' => $faker->address, 
+                'phone' => $faker->phoneNumber, 
                 'avatar' => '',
                 'birthday' => $faker->date(),
             ]);

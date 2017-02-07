@@ -8,15 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use JsValidator;
+use Mockery\Exception;
+use Monolog\Logger;
 
 class UserController extends Controller
 {
 
     protected $validationRules = [
         'name' => 'required',
-        'username' => 'required|min:3|max:15|regex:/^[a-z\d._-]{3,15}$/i',
+        'username' => 'required|min:3|regex:/^[a-z\d._-]{3,}$/i',
         'email' => 'required|email',
-        'phone' => 'regex:/^[0-9\-+]*$/',
+        'phone' => 'regex:/^[x\d-.+()\s]+$/',
     ];
 
     /**
@@ -53,11 +55,11 @@ class UserController extends Controller
     {
         $input = $request->all();
 
-//        $input['password'] = bcrypt($input['password']);
+        $input['password'] = bcrypt($input['password']);
 
-//        $newUser = User::create($input);
-//
-//        $newUser->profile()->create($input);
+        $newUser = User::create($input);
+
+        $newUser->profile()->create($input);
 
         Session::flash('flash_message', 'User successfully added!');
 
@@ -73,9 +75,13 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+        $audits = $user->audits;
 
-        return view('user.show')->withUser($user);
+        return view('user.show', [
+            'user' => $user,
+            'audits' => $audits,
+        ]);
     }
 
     /**
@@ -87,8 +93,11 @@ class UserController extends Controller
     public function edit($id)
     {
         $validator = JsValidator::make($this->validationRules);
-
-        $user = User::findOrFail($id);
+        try {
+            $user = User::findOrFail($id);
+        } catch (Exception $e) {
+            Log::debug('Error. ', [$e->getTrace() => $e->getMessage()]);
+        }
 
         return view('user.edit')->with([
             'validator' => $validator,

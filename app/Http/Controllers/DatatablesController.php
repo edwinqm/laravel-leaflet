@@ -20,6 +20,7 @@ class DatatablesController extends Controller
     public function responsive()
     {
         if (request()->ajax()) {
+            
             return Datatables::of(User::query())->make(true);
         }
 

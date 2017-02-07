@@ -12,6 +12,13 @@
 */
 
 Route::get('/', function () {
+
+    try {
+        return view('test-log-view');
+    } catch (Exception $e) {
+        Log::error($e);
+    }
+
     return view('welcome');
 });
 
@@ -142,7 +149,7 @@ Route::resource('users', 'UsersController');
 
 // service two-datatables
 Route::get('services/two-datatables', 'ServiceController@getUsersDataTables');
-Route::get('services/two-datatables/posts','ServiceController@getPostsDataTables');
+Route::get('services/two-datatables/posts', 'ServiceController@getPostsDataTables');
 
 ///////////////////////
 // RESPONSIVE TEST
@@ -154,3 +161,9 @@ Route::get('datatable/responsive', 'DatatablesController@responsive');
  * Users CRUD
  */
 Route::resource('user', 'UserController');
+
+// AUDITS
+Route::get('audits', 'AuditController@index');
+
+// LOGS
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

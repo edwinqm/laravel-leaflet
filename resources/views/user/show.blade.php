@@ -18,7 +18,7 @@
 
                                 <h1 class="page-header">{{ $user->username }}</h1>
 
-                                <p class="lead">{{ $user->name }}</p>
+                                <p class="lead">{{ $user->id.' | '.$user->name }}</p>
                                 <p class="lead">{{ $user->email }}</p>
                                 <p class="lead">{{ $user->profile->address }}</p>
 

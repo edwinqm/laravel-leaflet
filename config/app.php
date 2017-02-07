@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/La_Paz',
 
     /*
     |--------------------------------------------------------------------------
@@ -174,6 +174,9 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         //
 
@@ -248,6 +251,8 @@ return [
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
 
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
+
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

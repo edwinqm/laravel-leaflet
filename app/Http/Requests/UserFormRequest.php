@@ -25,7 +25,7 @@ class UserFormRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'username' => 'required|min:3|max:15|regex:/^[a-z\d._-]{3,15}$/i',
+            'username' => 'required|min:3|regex:/^[a-z\d._-]{3,}$/i',
             'email' => 'required|email|unique:users',
             // Contraseñas cuya longitud sea como mínimo 8 caracteres.
             // Contraseñas que contengan al menos un número o caracter especial.
@@ -35,7 +35,7 @@ class UserFormRequest extends FormRequest
             'password' => 'required|confirmed|regex:/^.*(?=.{8,})(?=.*\W+)(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/',
             // profile fields
             'address' => 'required',
-            'phone' => 'required|regex:/^[0-9\-+]+$/',
+            'phone' => 'required|regex:/^[x\d-.+()\s]+$/',
         ];
     }
 

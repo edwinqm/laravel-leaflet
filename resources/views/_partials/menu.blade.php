@@ -30,6 +30,7 @@
                 <li><a href="{{ url('/maps/leaflet') }}">Maps</a></li>
                 <li><a href="{{ url('/datatables') }}">DataTables</a></li>
                 <li><a href="{{ url('/user') }}">Users</a></li>
+                <li><a href="{{ url('/audits') }}">Audits</a></li>
 
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
@@ -57,6 +58,9 @@
                         </ul>
                     </li>
                 @endif
+
+                <li><a href="{{ url('/logs') }}" target="_blank">LOGS</a></li>
+
             </ul>
         </div>
     </div>
